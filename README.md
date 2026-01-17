@@ -1,10 +1,11 @@
 # tloc (Toad Lines of Code) 🐸
-tloc is a lightweight CLI tool built to quickly get a markdown list of all the solidity files within a directory, their SLOC and the total SLOC of the codebase.
+tloc is a lightweight CLI tool built to quickly create a markdown list of all solidity files within a directory, including the SLOC of each file and the total SLOC of the codebase.
 
-## Motivation
-The output of this tool is something I have been doing manually at the start of every audit engagement. I've always preferred having the list of files and their associated lines of code in a markdown file as it allows me to easily check off files after review them and add notes along the way.
+Line count should match that of other notable line counters (scc, cloc). 
 
-This tool greatly speeds that up, and it's written in Rust so... blazingly fast™️.
+## Differences vs Other Counters
+- Automatically writes the output to a markdown file including all file names sorted by directory with individual line counts.
+- Automatically skips directories named "interfaces", "test", "tests", "mock", "mocks"
 
 ## Installation
 ```bash
@@ -15,13 +16,15 @@ cargo install --path .
 
 ## Usage
 ```bash
-tloc --path PATH_TO_DIRECTORY --out PATH_TO_WRITE_OUTPUT
+tloc
 ```
 
 **Options**
 ```bash
 # Perform recursive search through any nested directorys within path 
-tloc --path PATH --out OUT --recurse
+--path # The path to start reading files from, defaults to current location
+--out # name of the file to write output to, defaults to scope.md
+--no-recurse # whether to not read the contents of nested directories, defaults to false (do read)
 ```
 
 **Example Output**
@@ -34,3 +37,4 @@ TOTAL: 806
 
 ## Contributing
 Contributions are welcome!
+
