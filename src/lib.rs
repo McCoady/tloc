@@ -34,6 +34,7 @@ pub fn traverse_dir(
                     name if name == "test" => continue,
                     name if name == "tests" => continue,
                     name if name == "mock" => continue,
+                    name if name == "mocks" => continue,
                     _ => {
                         let header = "#".repeat(level);
                         writeln!(file, "{header} {dir_name}").unwrap();
