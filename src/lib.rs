@@ -14,7 +14,7 @@ pub fn traverse_dir(
         let entry = entry.expect("failed to handle");
         let path = entry.path();
         if path.is_file() {
-            if let Some(extension) = entry.path().extension() {
+            if let Some(extension) = path.extension() {
                 if extension == "sol" {
                     // Process the file
                     code_count += write_output(file, &entry.path());                
